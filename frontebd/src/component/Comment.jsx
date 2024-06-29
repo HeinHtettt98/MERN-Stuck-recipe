@@ -6,7 +6,7 @@ import comment from "../public/forComment.json";
 
 const Comment = ({ _id }) => {
   const { data } = useGetCommentQuery(_id);
-  // console.log(data);
+  console.log(data);
   return (
     <div className=" flex flex-col gap-6 mt-3">
       {!data?.length ? (
@@ -20,7 +20,7 @@ const Comment = ({ _id }) => {
             <Avatar className=" w-6 h-6">
               <AvatarImage
                src={
-                ment.author.photo
+                ment?.author?.photo
                   ? import.meta.env.VITE_BACKEND_ASSURL + ment.author.photo
                   : import.meta.env.VITE_BACKEND_ASSURL + "/default.png"
               }
@@ -28,8 +28,8 @@ const Comment = ({ _id }) => {
               <AvatarFallback>CN</AvatarFallback>
             </Avatar>
             <div>
-              <p className=" text-sm">{ment.author.name}</p>
-              <span className="">{ment.text}</span>
+              <p className=" text-sm">{ment?.author?.name}</p>
+              <span className="">{ment?.text}</span>
             </div>
           </div>
         ))
