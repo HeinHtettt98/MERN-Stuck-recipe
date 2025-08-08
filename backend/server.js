@@ -18,7 +18,7 @@ app.set("view engine", "ejs");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
   })
 );
@@ -44,18 +44,18 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user",userRoute);
-app.get("/send-emails", async (req, res) => {
-  sentMail({
-    file: "email",
-    data: {
-      name: "Ko Myo Lin",
-    },
-    from: "haha@gmail.com",
-    to: "komyo@gmail.com",
-    subject: "About GOAT Messi",
-  });
-  return res.send("email already sent");
-});
+// app.get("/send-emails", async (req, res) => {
+//   sentMail({
+//     file: "email",
+//     data: {
+//       name: "Ko Myo Lin",
+//     },
+//     from: "haha@gmail.com",
+//     to: "komyo@gmail.com",
+//     subject: "About GOAT Messi",
+//   });
+//   return res.send("email already sent");
+// });
 
 app.use("/receipe", receipeRoute);
 app.use("/admin",validationMiddleweare, adminRoute);
