@@ -3,6 +3,7 @@ const errorMiddleweare = require("../middleweare/errorHandalling");
 const { body, validationResult } = require("express-validator");
 const receipeController = require("../controller/receipeController");
 const upload = require("../middleweare/uplode");
+const validationMiddleweare = require("../middleweare/validationMiddleweare");
 const route = express.Router();
 
 const validation = [
@@ -13,16 +14,29 @@ const validation = [
 
 route.get("", receipeController.index);
 
-route.get("/:id", receipeController.show);
+route.get("/:id", validationMiddleweare, receipeController.show);
 
-route.post("", validation, errorMiddleweare, receipeController.create);
+route.post(
+  "",
+  validationMiddleweare,
+  validation,
+  errorMiddleweare,
+  receipeController.create
+);
 
 route.post("/search", receipeController.search);
 
-route.put("/:id", validation, errorMiddleweare, receipeController.update);
+route.put(
+  "/:id",
+  validationMiddleweare,
+  validation,
+  errorMiddleweare,
+  receipeController.update
+);
 
 route.post(
   "/:id/uplode",
+  validationMiddleweare,
   [
     upload.single("photo"),
     body("photo").custom((value, { req }) => {
@@ -40,15 +54,15 @@ route.post(
   receipeController.uplode
 );
 
-route.post("/:id/reaction", receipeController.reaction);
+route.post("/:id/reaction", validationMiddleweare, receipeController.reaction);
 
-route.post("/:id/comment", receipeController.comment);
+route.post("/:id/comment", validationMiddleweare, receipeController.comment);
 
-route.get("/:id/get-comment", receipeController.getComment);
+route.get("/:id/get-comment", validationMiddleweare, receipeController.getComment);
 
-route.post("/:id/unsave", receipeController.unSave);
+route.post("/:id/unsave", validationMiddleweare, receipeController.unSave);
 
-route.delete("/:id", receipeController.destory);
+route.delete("/:id", validationMiddleweare, receipeController.destory);
 
 module.exports = route;
 

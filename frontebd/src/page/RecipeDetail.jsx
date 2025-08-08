@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   useCommentMutation,
   useShowQuery,
@@ -10,9 +10,11 @@ import { FaRegArrowAltCircleLeft } from "react-icons/fa";
 import DOMPurify from "dompurify";
 import DetailPageLoading from "./DetailPageLoading";
 import Ingredient from "../component/Ingredient";
+import notfound from "../public/notfound.svg"
 
 const RecipeDetail = () => {
   const { id } = useParams();
+  console.log("first",id)
   const nav = useNavigate();
   const { data, isLoading, isError } = useShowQuery(id);
   const [fun] = useCommentMutation();
@@ -32,12 +34,20 @@ const RecipeDetail = () => {
     });
     setComment("");
   };
+  // useEffect(() => {
+  //   if (!id) {
+  //     nav("/");
+  //   }
+  // }, [id]);
   return (
-    <div className=" mt-[40px] max-w-[1200px] mx-auto p-5">
+    <div className=" mt-[60px] max-w-[1200px] mx-auto p-5">
       {isLoading ? (
         <DetailPageLoading />
       ) : isError ? (
-        <div>{error.data.error}</div>
+        <div className="flex flex-col space-y-4 justify-center items-center">
+          <img src={notfound} alt="" className="w-[500px] h-[400px] object-contain" />
+          <p className="text-center font-semibold">Receipe not found</p>
+        </div>
       ) : (
         <>
           {!data ? (

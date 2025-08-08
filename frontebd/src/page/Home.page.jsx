@@ -5,7 +5,7 @@ import AuthGard from "../component/guard/AuthGard";
 
 const HomePage = () => {
   return (
-    <AuthGard>
+    <div>
       <div>
         <NavComponent />
         <div>
@@ -24,7 +24,7 @@ const HomePage = () => {
         pauseOnHover
         theme="colored"
       />
-    </AuthGard>
+    </div>
   );
 };
 

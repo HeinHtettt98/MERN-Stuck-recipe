@@ -1,25 +1,16 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuthQuery } from "../../store/service/UserEndpoint";
-import { useDispatch } from "react-redux";
-import { getInform } from "../../store/slice/userSlice";
+import { useSelector } from "react-redux";
 
 const AuthGard = ({ children }) => {
-  const { data, error } = useAuthQuery();
-  const dispath = useDispatch();
+  const { _id } = useSelector((store) => store.user);
   const nav = useNavigate();
   useEffect(() => {
-    if (!error) {
-      if (data) {
-        dispath(getInform(data));
-        nav("/");
-      } else {
-        nav("/sign-in");
-      }
-    } else {
+    if (!_id) {
       nav("/sign-in");
     }
-  }, [data, error]);
+  }, [_id]);
+  console.log("AuthGard", _id);
   return <div>{children}</div>;
 };
 

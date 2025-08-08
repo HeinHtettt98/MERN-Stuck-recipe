@@ -6,6 +6,8 @@ import { useLocation, useNavigate } from "react-router-dom";
 import SideBar from "../component/SideBar";
 import InfiniteScroll from "react-infinite-scroll-component";
 import SearchRecipes from "../component/SearchRecipes";
+import Lottie from "lottie-react";
+import errorAnimation from "../public/errorAni.json";
 
 const ReceipesHome = () => {
   const [page, setPage] = useState(1);
@@ -16,8 +18,11 @@ const ReceipesHome = () => {
 
   const loadFunction = useCallback(() => {
     if (data?.recipes) {
-      const combinedArray = [...new Set([...item, ...data.recipes])];
-      setItem(combinedArray);
+      let existingIds = item.map((recipe) => recipe._id);
+      setItem([
+        ...item,
+        ...data.recipes.filter((recipe) => !existingIds.includes(recipe._id)),
+      ]);
     }
   }, [data]);
 
@@ -43,7 +48,7 @@ const ReceipesHome = () => {
           ))}
         </div>
       ) : (
-        <div className=" md:w-8/12 sm:w-full">
+        <div className=" md:w-7/12 lg:w-9/12 w-11/12">
           <div className=" sm:block w-full md:hidden mt-3">
             <SearchRecipes setSearchItem={setSearchItem} />
           </div>
@@ -52,11 +57,16 @@ const ReceipesHome = () => {
               <LoadingComponent />
             </div>
           ) : isError ? (
-            <div>{error.data.error}</div>
+            <div className="flex flex-col items-center w-10/12 mx-auto justify-center h-[400px]">
+              <Lottie className="w-1/2" animationData={errorAnimation} />
+              <p className="text-base font-semibold">
+                There is something wrong. Please, reload the page.
+              </p>
+            </div>
           ) : (
             <>
               {item.length ? (
-                <div>
+                <div className="w-full">
                   <InfiniteScroll
                     dataLength={item.length} //This is important field to render the next data
                     next={nextPageHandel}
@@ -79,7 +89,12 @@ const ReceipesHome = () => {
                   </InfiniteScroll>
                 </div>
               ) : (
-                <LoadingComponent />
+                <div className="flex flex-col items-center w-10/12 mx-auto justify-center h-[400px]">
+                  <Lottie className="w-1/2" animationData={errorAnimation} />
+                  <p className="text-base font-semibold">
+                    There is no recipe available. Please, create a recipe.
+                  </p>
+                </div>
               )}
             </>
           )}

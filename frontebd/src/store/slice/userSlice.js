@@ -5,7 +5,7 @@ const state = {
   photo: "",
   name: "",
   count: 0,
-  role: ""
+  role: "",
 };
 
 const userSlice = createSlice({
@@ -17,16 +17,23 @@ const userSlice = createSlice({
       state.name = action.payload.name;
       state.photo = action.payload.photo;
       state._id = action.payload._id;
-      state.role = action.payload.role
+      state.role = action.payload.role;
     },
     profileAdd: (state, action) => {
       state.photo = action.payload;
     },
-   countAdd: (state, action) => {
+    countAdd: (state, action) => {
       state.count = action.payload;
+    },
+    clearInform: (state, action) => {
+      state.count = 0;
+      state.name = "";
+      state.photo = "";
+      state._id = "";
+      state.role = "";
     },
   },
 });
 
-export const { getInform, profileAdd, countAdd} = userSlice.actions;
+export const { getInform, profileAdd, countAdd, clearInform } = userSlice.actions;
 export default userSlice.reducer;

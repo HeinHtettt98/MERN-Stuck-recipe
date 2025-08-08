@@ -22,7 +22,7 @@ const SearchRecipes = ({setSearchItem}) => {
     };
   return (
     <div>
-      <li className="flex items-center max-w-sm md:absolute lg:static mx-auto">
+      <li className="flex items-center max-w-sm lg:static mx-auto">
         <div className="relative w-full">
           <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
             <svg

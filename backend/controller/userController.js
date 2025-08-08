@@ -39,7 +39,14 @@ const userController = {
         maxAge: 3 * 24 * 60 * 60 * 1000,
         // httpOnly: true,
       });
-      res.json({ user, token });
+      let userInform = {
+        _id: user._id,
+        name: user.name,
+        photo: user.photo || "",
+        createdCount: user.createdCount.length,
+        role: user.role,
+      };
+      res.json({ user: userInform, token });
     } catch (e) {
       res.status(400).json({ error: e.message });
     }

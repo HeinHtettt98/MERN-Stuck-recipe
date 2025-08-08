@@ -3,15 +3,19 @@ import { useReactionMutation } from "../store/service/ReceiveEndpoint";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaRegComment } from "react-icons/fa";
 
-const ReactComent = ({ react, comment, id }) => {
+const ReactComent = ({ react, comment, id, _id, setOpen }) => {
   const [fun] = useReactionMutation();
   const [reaction, setReaction] = useState(false);
   const [heart, setHeart] = useState(react);
   const reactionFun = async (e) => {
     e.stopPropagation();
-    await fun(id);
-    setHeart(heart + 1)
-    setReaction(true);
+    if (_id !== "") {
+      await fun(id);
+      setHeart(heart + 1);
+      setReaction(true);
+    } else {
+      setOpen(true);
+    }
   };
   return (
     <div className="flex gap-2">

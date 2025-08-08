@@ -57,7 +57,7 @@ app.get("/send-emails", async (req, res) => {
   return res.send("email already sent");
 });
 
-app.use("/receipe",validationMiddleweare, receipeRoute);
+app.use("/receipe", receipeRoute);
 app.use("/admin",validationMiddleweare, adminRoute);
 
 // MongooseServerSelectionError: connect ETIMEDOUT

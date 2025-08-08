@@ -1,4 +1,4 @@
-import React from "react";
+import { MdOutlineAccountCircle } from "react-icons/md";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   HoverCard,
@@ -9,7 +9,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { LuHome } from "react-icons/lu";
 const NavComponent = () => {
-  const { photo, count, name } = useSelector((store) => store.user);
+  const { photo, count, name, _id } = useSelector((store) => store.user);
+  console.log("firstname, count, name", _id);
   return (
     <div className=" bg-primary fixed z-50 top-0 w-full">
       <div className=" flex items-center max-w-[1200px] px-2 mx-auto justify-between">
@@ -18,53 +19,60 @@ const NavComponent = () => {
           src={import.meta.env.VITE_BACKEND_ASSURL + "/project.png"}
           alt=""
         />
-        <ul className=" space-x-3 flex text-base text-secondary">
+        <ul className=" space-x-3 flex items-center text-base text-secondary">
           <li>
             <Link to="/">
-              <LuHome size={"1.5em"} className=" text-secondary" />
+              <LuHome  />
             </Link>
           </li>
           <li> | </li>
           <li>
-            <Link to="user/profile">
-              <HoverCard>
-                <HoverCardTrigger>
-                  <Avatar className=" w-7 h-[26px] border-[2px]">
-                    <AvatarImage
-                      src={
-                        photo.length == 0
-                          ? import.meta.env.VITE_BACKEND_ASSURL + "/default.png"
-                          : import.meta.env.VITE_BACKEND_ASSURL + photo
-                      }
-                    />
-                    <AvatarFallback>CN</AvatarFallback>
-                  </Avatar>
-                </HoverCardTrigger>
-                <HoverCardContent>
-                  <div className=" flex gap-3">
-                    <Avatar className=" w-6 h-6">
+            {_id == "" ? (
+              <Link to="/sign-in">
+                <MdOutlineAccountCircle className=" text-secondary text-xl" />
+              </Link>
+            ) : (
+              <Link to="/user/profile">
+                <HoverCard>
+                  <HoverCardTrigger>
+                    <Avatar className=" w-7 h-[26px] border-[2px]">
                       <AvatarImage
                         src={
-                          !photo.length == 0
-                            ? import.meta.env.VITE_BACKEND_ASSURL + photo
-                            : import.meta.env.VITE_BACKEND_ASSURL +
+                          photo.length == 0
+                            ? import.meta.env.VITE_BACKEND_ASSURL +
                               "/default.png"
+                            : import.meta.env.VITE_BACKEND_ASSURL + photo
                         }
                       />
                       <AvatarFallback>CN</AvatarFallback>
                     </Avatar>
-                    <div>
-                      <p className="">{name}</p>
-                      <span className="text-slate-400 text-sm">
-                        {`${count} ${
-                          count > 1 ? "recipes" : "recipe"
-                        }  created`}
-                      </span>
+                  </HoverCardTrigger>
+                  <HoverCardContent>
+                    <div className=" flex gap-3">
+                      <Avatar className=" w-6 h-6">
+                        <AvatarImage
+                          src={
+                            !photo.length == 0
+                              ? import.meta.env.VITE_BACKEND_ASSURL + photo
+                              : import.meta.env.VITE_BACKEND_ASSURL +
+                                "/default.png"
+                          }
+                        />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      <div>
+                        <p className="">{name}</p>
+                        <span className="text-slate-400 text-sm">
+                          {`${count} ${
+                            count > 1 ? "recipes" : "recipe"
+                          }  created`}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                </HoverCardContent>
-              </HoverCard>
-            </Link>
+                  </HoverCardContent>
+                </HoverCard>
+              </Link>
+            )}
           </li>
         </ul>
       </div>

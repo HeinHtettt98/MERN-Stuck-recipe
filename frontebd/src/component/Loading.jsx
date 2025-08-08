@@ -2,7 +2,7 @@ import React from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const LoadingComponent = () => {
-  const arr = [1, 2, 3, 4, 5];
+  const arr = [1, 2, 3, 4, 5,6];
   return (
     <div className="space-y-4 grid lg:grid-cols-2 md:grid-cols-1 gap-3 ">
       {arr.map((i) => (

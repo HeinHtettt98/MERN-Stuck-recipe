@@ -3,14 +3,17 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { useUplodeProfileMutation } from "../../../store/service/UserEndpoint";
 import { profileAdd } from "../../../store/slice/userSlice";
-import { ToastContainer, toast } from "react-toastify";
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import "react-toastify/dist/ReactToastify.css";
+import defaultt from "../../../public/default.png";
+import { IoMdCheckmarkCircleOutline } from "react-icons/io";
 
 const UplodePage = () => {
   const [fun, { isLoading, data, isSuccess }] = useUplodeProfileMutation();
   const [file, setFile] = useState("");
   const dispath = useDispatch();
   const [preview, setPreview] = useState("");
+  const [toast, setToast] = useState(false);
   const addProfileHandel = async () => {
     const formData = new FormData();
     formData.set("photo", file);
@@ -28,16 +31,7 @@ const UplodePage = () => {
   // console.log(state);
   useEffect(() => {
     if (isSuccess) {
-      toast(String.fromCodePoint(0x1f60a) + ` Uplode profile successful`, {
-        position: "bottom-left",
-        autoClose: 1000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
+      setToast(true);
       dispath(profileAdd(data));
     }
   }, [isSuccess, dispath, data]);
@@ -87,7 +81,7 @@ const UplodePage = () => {
       <div className=" flex  justify-between w-8/12">
         <div className=" flex gap-2 w-full">
           <Avatar className=" w-6 h-6">
-            <AvatarImage src="https://github.com/shadcn.png" />
+            <AvatarImage src={defaultt} />
             <AvatarFallback>CN</AvatarFallback>
           </Avatar>
           <p className=" text-gray-400 text-sm">
@@ -118,18 +112,19 @@ const UplodePage = () => {
           Uplode
         </button>
       </div>
-      <ToastContainer
-        position="bottom-left"
-        autoClose={1000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      {toast && (
+        <Alert
+          variant="default | destructive"
+          className="border absolute bottom-1 left-1 w-[350px] border-green-500"
+        >
+          <AlertDescription>
+            <div className="flex items-center space-x-1">
+              <IoMdCheckmarkCircleOutline />
+              <p>Profile Uplode Successfully..</p>
+            </div>
+          </AlertDescription>
+        </Alert>
+      )}
     </div>
   );
 };

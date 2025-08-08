@@ -2,15 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useSignInMutation } from "../store/service/UserEndpoint";
 import { Link, useNavigate } from "react-router-dom";
 import AuthGard from "../component/guard/AuthGard";
-import logo from '../public/login.svg';
+import logo from "../public/login.svg";
+import NavComponent from "../component/Nav.component";
+import { useDispatch } from "react-redux";
+import { getInform } from "../store/slice/userSlice";
 
 const SignInPage = () => {
-  const [fun, { isError, isLoading, isSuccess, error }] = useSignInMutation();
+  const [fun, { isError, isLoading, isSuccess, error, data }] = useSignInMutation();
   const [login, setLogin] = useState({
     email: "",
     password: "",
   });
   const nav = useNavigate();
+  const dispatch = useDispatch();
   const loginHandel = async (e) => {
     e.preventDefault();
     await fun(login);
@@ -19,21 +23,23 @@ const SignInPage = () => {
   const onChangeHandal = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
+  console.log(isSuccess, isError, error);
   useEffect(() => {
     if (isSuccess) {
-      nav("/");
+      dispatch(getInform(data?.user));
+      nav("/user/profile");
     }
   }, [isSuccess]);
+
   return (
-    <AuthGard >
+    <AuthGard>
+      <NavComponent />
       <div className=" flex gap-3 justify-center max-w-[1200px] mt-28 mx-auto ">
-        <div className=" w-[500px]"> 
+        <div className=" w-[500px]">
           <img src={logo} className=" w-full h-full" alt="" />
         </div>
         <div className=" flex flex-col w-7/12 items-center bg-white rounded-md">
-          <h1 className=" text-primary font-bold text-2xl mt-2">
-            Login Form
-          </h1>
+          <h1 className=" text-primary font-bold text-2xl mt-2">Login Form</h1>
           <form className=" p-4 w-full " onSubmit={loginHandel}>
             <div className="mb-6">
               <label
