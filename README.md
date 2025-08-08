@@ -22,3 +22,17 @@ They can also comment on recipes, react with emojis, and connect with others —
   - Update user profiles and information
   - Logout function
 - User interaction through comments and reactions
+
+## 📦 Installation
+```bash
+# Clone the repo
+git clone https://github.com/HeinHtettt98/MERN-Stuck-recipe.git
+
+# Go into the project directory
+cd your-repo-name
+
+# Install dependencies (Both of frontend and Backend)
+npm install
+
+# Start the development server (Both of frontend and Backend)
+npm run dev
