@@ -14,7 +14,7 @@ import notfound from "../public/notfound.svg"
 
 const RecipeDetail = () => {
   const { id } = useParams();
-  console.log("first",id)
+   ("first",id)
   const nav = useNavigate();
   const { data, isLoading, isError } = useShowQuery(id);
   const [fun] = useCommentMutation();

@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 const UpdateDelete = ({ id, recipe }) => {
   const [fun, { isLoading }] = useDeleteReceipeMutation();
   const nav = useNavigate();
-  //   console.log(recipe);
+  //    (recipe);
   return (
     <div className="flex gap-2">
       <button

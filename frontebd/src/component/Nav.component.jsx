@@ -10,7 +10,7 @@ import { useSelector } from "react-redux";
 import { LuHome } from "react-icons/lu";
 const NavComponent = () => {
   const { photo, count, name, _id } = useSelector((store) => store.user);
-  console.log("firstname, count, name", _id);
+   ("firstname, count, name", _id);
   return (
     <div className=" bg-primary fixed z-50 top-0 w-full">
       <div className=" flex items-center max-w-[1200px] px-2 mx-auto justify-between">

@@ -32,7 +32,7 @@ route.post(
     upload.single("photo"),
     body("photo").custom((value, { req }) => {
       if (!req.file) {
-        // console.log("validate", req.file);
+        //  ("validate", req.file);
         throw new Error("Photo is required");
       }
       if (!req.file.mimetype.startsWith("image")) {

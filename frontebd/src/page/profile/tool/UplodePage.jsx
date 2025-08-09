@@ -28,7 +28,7 @@ const UplodePage = () => {
     };
     fileReader.readAsDataURL(image);
   };
-  // console.log(state);
+  //  (state);
   useEffect(() => {
     if (isSuccess) {
       setToast(true);

@@ -15,10 +15,14 @@ const SavedPage = () => {
       {isLoading ? (
         <LoadingComponent />
       ) : isError ? (
-        <div>{error.data.error}</div>
+        <div className="flex flex-col justify-center items-center h-[500px] ">
+          <p className="text-xl text-red-400 font-semibold text-center">
+            Something wrong. Please try again.
+          </p>
+        </div>
       ) : (
         <>
-          {data.length ? (
+          {data?.length ? (
             <div className=" grid lg:grid-cols-2 md:grid-cols-1 gap-3">
               {data?.map((d, index) => (
                 <ReceipeCard key={index} recipe={d} />

@@ -24,7 +24,7 @@ const ReceipeCard = ({ recipe }) => {
   const nav = useNavigate();
   const [save, setSaved] = useState(false);
   const locae = useLocation();
-  // console.log(locae);
+  //  (locae);
   const detailHandel = (id) => {
     nav(`/recipe/${id}`);
   };

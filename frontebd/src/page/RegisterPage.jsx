@@ -13,7 +13,7 @@ const Register = () => {
   const nav = useNavigate();
   const registerHandal = async (e) => {
     e.preventDefault();
-    console.log("object");
+     ("object");
     await fun(register);
   };
 

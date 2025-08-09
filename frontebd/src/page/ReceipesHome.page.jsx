@@ -65,7 +65,7 @@ const ReceipesHome = () => {
             </div>
           ) : (
             <>
-              {item.length ? (
+              {item?.length ? (
                 <div className="w-full">
                   <InfiniteScroll
                     dataLength={item.length} //This is important field to render the next data

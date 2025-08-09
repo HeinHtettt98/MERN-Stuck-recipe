@@ -6,7 +6,7 @@ import comment from "../public/forComment.json";
 
 const Comment = ({ _id }) => {
   const { data } = useGetCommentQuery(_id);
-  console.log(data);
+   (data);
   return (
     <div className=" flex flex-col gap-6 mt-3">
       {!data?.length ? (

@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const ProfileComponemt = () => {
   const { photo, count, name } = useSelector((store) => store.user);
-  console.log("profileComponent", photo);
+   ("profileComponent", photo);
 
   return (
     <div className=" flex gap-3">

@@ -27,13 +27,13 @@ app.use(cookieparser());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    console.log("connect");
+     ("connect");
     app.listen(process.env.PORT, () => {
-      console.log("server connecting");
+       ("server connecting");
     });
   })
   .catch((e) => {
-    console.log(e);
+     (e);
   });
 
 app.use(express.json());

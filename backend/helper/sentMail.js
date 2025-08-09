@@ -20,7 +20,7 @@ const sentMail = async ({ file, data, from, to, subject }) => {
       html: dataString, // plain text body
     });
 
-    console.log("Message sent: %s", info.messageId);
+     ("Message sent: %s", info.messageId);
   } catch (error) {
     throw new Error(e);
   }

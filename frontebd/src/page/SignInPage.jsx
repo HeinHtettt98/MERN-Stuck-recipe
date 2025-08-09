@@ -23,7 +23,7 @@ const SignInPage = () => {
   const onChangeHandal = (e) => {
     setLogin({ ...login, [e.target.name]: e.target.value });
   };
-  console.log(isSuccess, isError, error);
+   (isSuccess, isError, error);
   useEffect(() => {
     if (isSuccess) {
       dispatch(getInform(data?.user));

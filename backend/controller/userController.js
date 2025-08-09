@@ -21,7 +21,7 @@ const userController = {
       let { name, email, password } = req.body;
       let user = await User.register(name, email, password);
       const token = createToken(user._id);
-      // console.log("object");
+      //  ("object");
       res.cookie("jwt", token);
       res.json({ user, token });
     } catch (e) {
@@ -34,7 +34,7 @@ const userController = {
       let { email, password } = req.body;
       let user = await User.login(email, password);
       const token = createToken(user._id);
-      // console.log("object");
+      //  ("object");
       res.cookie("jwt", token, {
         maxAge: 3 * 24 * 60 * 60 * 1000,
         // httpOnly: true,
@@ -111,13 +111,13 @@ const userController = {
 
   getSaved: async (req, res) => {
     const { id } = req.params;
-    // console.log("object");
+    //  ("object");
     try {
       const user = await User.findById(id).populate("savedPosts");
       if (!user) {
         return res.status(404).send("User not found");
       }
-      // console.log("ok lar");
+      //  ("ok lar");
       res.status(200).json(user.savedPosts);
     } catch (err) {
       res.status(500).send(err.message);
@@ -126,14 +126,14 @@ const userController = {
 
   createdCount: async (req, res) => {
     try {
-      console.log("object");
+       ("object");
       const userCreated = await User.findById(req.user._id).populate(
         "createdCount"
       );
       if (!userCreated) {
         return res.status(404).send("User not found");
       }
-      console.log("ok lar");
+       ("ok lar");
       res.status(200).json(userCreated.createdCount);
     } catch (err) {
       res.status(500).send(err.message);

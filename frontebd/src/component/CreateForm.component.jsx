@@ -99,7 +99,7 @@ const CreateFormComponent = () => {
       await uploderFun({ id: state._id, data: formData });
     } else {
       const res = await fun(obj);
-      // console.log(res);
+      //  (res);
       await uploderFun({ id: res?.data?._id, data: formData });
     }
   };

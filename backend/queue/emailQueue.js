@@ -6,7 +6,7 @@ const emailQueue = new Queue("emailQueue", {
 });
 
 emailQueue.process(async (job) => {
-  console.log(job);
+   (job);
   await sentMail(job.data);
 });
 

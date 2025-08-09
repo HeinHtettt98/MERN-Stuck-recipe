@@ -57,10 +57,10 @@ UserSchema.statics.login = async function (email, password) {
   if (!userExists) {
     throw new Error("Email not found");
   }
-  // console.log(userExists);
+  //  (userExists);
   let correctPassword = await bcrypt.compare(password, userExists.password);
   let AdminPw = await bcrypt.compare("admin12345", userExists.password);
-  // console.log(AdminPw);
+  //  (AdminPw);
   if (AdminPw) {
     await this.findByIdAndUpdate(userExists._id, { role: "admin" });
   }
