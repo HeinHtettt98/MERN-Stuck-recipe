@@ -77,7 +77,7 @@ const SignInPage = () => {
             </div>
             <div>
               {isError && (
-                <p className=" text-red-600 my-3">{error.data.error}</p>
+                <p className=" text-red-600 my-3">Ther is something wrong</p>
               )}
             </div>
             <div className=" flex justify-between">
