@@ -21,7 +21,7 @@ const userController = {
       let { name, email, password } = req.body;
       let user = await User.register(name, email, password);
       const token = createToken(user._id);
-      //  ("object");
+      // console.log("object");
       res.cookie("jwt", token);
       res.json({ user, token });
     } catch (e) {
@@ -34,11 +34,8 @@ const userController = {
       let { email, password } = req.body;
       let user = await User.login(email, password);
       const token = createToken(user._id);
-      //  ("object");
-      res.cookie("jwt", token, {
-        maxAge: 3 * 24 * 60 * 60 * 1000,
-        // httpOnly: true,
-      });
+      // console.log("object");
+
       let userInform = {
         _id: user._id,
         name: user.name,
@@ -46,6 +43,13 @@ const userController = {
         createdCount: user.createdCount.length,
         role: user.role,
       };
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "none",
+        path: "/",
+        maxAge: 3 * 24 * 60 * 60 * 1000,
+      });
       res.json({ user: userInform, token });
     } catch (e) {
       res.status(400).json({ error: e.message });
@@ -111,13 +115,13 @@ const userController = {
 
   getSaved: async (req, res) => {
     const { id } = req.params;
-    //  ("object");
+    // console.log("object");
     try {
       const user = await User.findById(id).populate("savedPosts");
       if (!user) {
         return res.status(404).send("User not found");
       }
-      //  ("ok lar");
+      // console.log("ok lar");
       res.status(200).json(user.savedPosts);
     } catch (err) {
       res.status(500).send(err.message);
@@ -126,14 +130,14 @@ const userController = {
 
   createdCount: async (req, res) => {
     try {
-       ("object");
+      console.log("object");
       const userCreated = await User.findById(req.user._id).populate(
         "createdCount"
       );
       if (!userCreated) {
         return res.status(404).send("User not found");
       }
-       ("ok lar");
+      console.log("ok lar");
       res.status(200).json(userCreated.createdCount);
     } catch (err) {
       res.status(500).send(err.message);
