@@ -8,9 +8,7 @@ const AuthGard = ({ children }) => {
   useEffect(() => {
     if (!_id) {
       nav("/sign-in");
-    } else {
-      nav("/");
-    }
+    } 
   }, [_id]);
    ("AuthGard", _id);
   return <div>{children}</div>;
