@@ -11,7 +11,7 @@ import { LuHome } from "react-icons/lu";
 import defaultt from "../public/default.png";
 const NavComponent = () => {
   const { photo, count, name, _id } = useSelector((store) => store.user);
-  "firstname, count, name", _id;
+
   return (
     <div className=" bg-primary fixed z-50 top-0 w-full">
       <div className=" flex items-center max-w-[1200px] px-2 mx-auto justify-between">

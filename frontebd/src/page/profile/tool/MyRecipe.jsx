@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 
 const MyRecipe = () => {
   const { data, isLoading, isError, error } = useCreatedCountQuery();
-   ("data");
+
   return (
     <div className="">
       {isLoading ? (

@@ -5,7 +5,6 @@ import defaultt from "../public/default.png";
 
 const ProfileComponemt = () => {
   const { photo, count, name } = useSelector((store) => store.user);
-  "profileComponent", photo;
 
   return (
     <div className=" flex gap-3">
