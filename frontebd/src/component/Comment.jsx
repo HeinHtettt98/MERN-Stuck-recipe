@@ -3,6 +3,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useGetCommentQuery } from "../store/service/ReceiveEndpoint";
 import Lottie from "lottie-react";
 import comment from "../public/forComment.json";
+import defaultt from "../public/default.png"
 
 const Comment = ({ _id }) => {
   const { data } = useGetCommentQuery(_id);
@@ -22,7 +23,7 @@ const Comment = ({ _id }) => {
                src={
                 ment?.author?.photo
                   ? import.meta.env.VITE_BACKEND_ASSURL + ment.author.photo
-                  : import.meta.env.VITE_BACKEND_ASSURL + "/default.png"
+                  : defaultt
               }
               />
               <AvatarFallback>CN</AvatarFallback>

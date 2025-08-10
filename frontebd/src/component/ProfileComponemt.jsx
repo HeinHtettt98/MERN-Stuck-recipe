@@ -1,10 +1,11 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useSelector } from "react-redux";
+import defaultt from "../public/default.png";
 
 const ProfileComponemt = () => {
   const { photo, count, name } = useSelector((store) => store.user);
-   ("profileComponent", photo);
+  "profileComponent", photo;
 
   return (
     <div className=" flex gap-3">
@@ -12,7 +13,7 @@ const ProfileComponemt = () => {
         <AvatarImage
           src={
             photo.length == 0
-              ? import.meta.env.VITE_BACKEND_ASSURL + "/default.png"
+              ? defaultt
               : import.meta.env.VITE_BACKEND_ASSURL + photo
           }
         />

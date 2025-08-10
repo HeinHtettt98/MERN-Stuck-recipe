@@ -78,7 +78,7 @@ const ReceipeCard = ({ recipe }) => {
               <Avatar className=" w-6 h-6">
                 <AvatarImage
                   src={
-                    import.meta.env.VITE_BACKEND_ASSURL + recipe.createdBy.image
+                    import.meta.env.VITE_BACKEND_ASSURL + recipe?.createdBy?.image
                   }
                 />
                 <AvatarFallback>CN</AvatarFallback>
