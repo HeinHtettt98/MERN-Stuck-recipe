@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { LuHome } from "react-icons/lu";
 import defaultt from "../public/default.png";
+import logo from "../public/project.png";
+
 const NavComponent = () => {
   const { photo, count, name, _id } = useSelector((store) => store.user);
 
@@ -17,7 +19,7 @@ const NavComponent = () => {
       <div className=" flex items-center max-w-[1200px] px-2 mx-auto justify-between">
         <img
           className=" w-[80px] h-[60px]"
-          src={import.meta.env.VITE_BACKEND_ASSURL + "/project.png"}
+          src={logo}
           alt=""
         />
         <ul className=" space-x-3 flex items-center text-base text-secondary">

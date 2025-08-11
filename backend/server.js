@@ -27,9 +27,9 @@ app.use(cookieparser());
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-     ("connect");
+     console.log("connect");
     app.listen(process.env.PORT, () => {
-       ("server connecting");
+       console.log("server connecting");
     });
   })
   .catch((e) => {

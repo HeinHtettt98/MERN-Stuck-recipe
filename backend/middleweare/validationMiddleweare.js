@@ -9,6 +9,7 @@ const validationMiddleweare = function async(req, res, next) {
       } else {
         User.findById(decodedValue.id).then((user) => {
           req.user = user;
+          // console.log("first",user)
           next();
         });
       }

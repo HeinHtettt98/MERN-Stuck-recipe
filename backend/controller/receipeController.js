@@ -39,7 +39,7 @@ const receipeController = {
       const recipeSearch = await Receipe.find({
         title: { $regex: title, $options: "i" },
       });
-       (recipeSearch);
+
       if (!recipeSearch) {
         return res.status(404).json({ error: "Receipe not found" });
       }
@@ -87,7 +87,7 @@ const receipeController = {
       let users = await User.find(null, ["email"]);
       let email = users.map((user) => user.email);
       let realityEmail = email.filter((email) => email != accUser.email);
-       ("body one");
+   
       emailQueue.add({
         file: "email",
         data: {

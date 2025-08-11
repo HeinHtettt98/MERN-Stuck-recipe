@@ -15,6 +15,7 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { FaRegWindowClose } from "react-icons/fa";
+import defaultt from "../public/default.png";
 
 const ReceipeCard = ({ recipe }) => {
   const [fun] = useSavedPostMutation();
@@ -24,7 +25,7 @@ const ReceipeCard = ({ recipe }) => {
   const nav = useNavigate();
   const [save, setSaved] = useState(false);
   const locae = useLocation();
-  //  (locae);
+  console.log("first",recipe)
   const detailHandel = (id) => {
     nav(`/recipe/${id}`);
   };
@@ -78,7 +79,9 @@ const ReceipeCard = ({ recipe }) => {
               <Avatar className=" w-6 h-6">
                 <AvatarImage
                   src={
-                    import.meta.env.VITE_BACKEND_ASSURL + recipe?.createdBy?.image
+                    (import.meta.env.VITE_BACKEND_ASSURL +
+                      recipe?.createdBy?.image) |
+                    defaultt
                   }
                 />
                 <AvatarFallback>CN</AvatarFallback>
@@ -90,11 +93,11 @@ const ReceipeCard = ({ recipe }) => {
             </div>
             {save ? (
               <BsBookmarkHeartFill
-                onClick={UnsavedPostHandel}
+                onClick={(e) => UnsavedPostHandel(e)}
                 className=" mt-0 text-lg"
               />
             ) : (
-              <GoBookmark onClick={savedPostHandel} className="mt-0 text-lg" />
+              <GoBookmark onClick={(e) => savedPostHandel(e)} className="mt-0 text-lg" />
             )}
           </div>
           <div className=" w-10/12 h-[200px] mx-auto">

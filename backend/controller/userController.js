@@ -137,7 +137,7 @@ const userController = {
       if (!userCreated) {
         return res.status(404).send("User not found");
       }
-      console.log("ok lar");
+      console.log(userCreated);
       res.status(200).json(userCreated.createdCount);
     } catch (err) {
       res.status(500).send(err.message);
