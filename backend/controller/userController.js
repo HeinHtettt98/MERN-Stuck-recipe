@@ -58,7 +58,7 @@ const userController = {
 
   logout: async (req, res) => {
     try {
-      res.cookie("jwt", "", { maxAge: 1 });
+      res.cookie("jwt", "", { maxAge: 1, sameSite: "none" });
       res.json({ data: "User Logout" });
     } catch (error) {}
   },
