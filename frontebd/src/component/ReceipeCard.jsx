@@ -25,7 +25,7 @@ const ReceipeCard = ({ recipe }) => {
   const nav = useNavigate();
   const [save, setSaved] = useState(false);
   const locae = useLocation();
-  console.log("first",recipe)
+  console.log("first", recipe);
   const detailHandel = (id) => {
     nav(`/recipe/${id}`);
   };
@@ -79,9 +79,10 @@ const ReceipeCard = ({ recipe }) => {
               <Avatar className=" w-6 h-6">
                 <AvatarImage
                   src={
-                    (import.meta.env.VITE_BACKEND_ASSURL +
-                      recipe?.createdBy?.image) |
-                    defaultt
+                    recipe?.createdBy?.image.length == 0
+                      ? defaultt
+                      : import.meta.env.VITE_BACKEND_ASSURL +
+                        recipe?.createdBy?.image
                   }
                 />
                 <AvatarFallback>CN</AvatarFallback>
@@ -97,13 +98,20 @@ const ReceipeCard = ({ recipe }) => {
                 className=" mt-0 text-lg"
               />
             ) : (
-              <GoBookmark onClick={(e) => savedPostHandel(e)} className="mt-0 text-lg" />
+              <GoBookmark
+                onClick={(e) => savedPostHandel(e)}
+                className="mt-0 text-lg"
+              />
             )}
           </div>
           <div className=" w-10/12 h-[200px] mx-auto">
             <img
               className=" w-full h-full object-cover"
-              src={import.meta.env.VITE_BACKEND_ASSURL + recipe.photo}
+              src={
+                recipe?.photo?.length > 0
+                  ? import.meta.env.VITE_BACKEND_ASSURL + recipe?.photo
+                  : defaultt
+              }
               alt=""
             />
           </div>

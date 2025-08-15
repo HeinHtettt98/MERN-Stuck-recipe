@@ -88,16 +88,16 @@ const receipeController = {
       let email = users.map((user) => user.email);
       let realityEmail = email.filter((email) => email != accUser.email);
    
-      emailQueue.add({
-        file: "email",
-        data: {
-          name: accUser.name,
-          receipe,
-        },
-        from: accUser.email,
-        to: realityEmail,
-        subject: "About New Recipe",
-      });
+      // emailQueue.add({
+      //   file: "email",
+      //   data: {
+      //     name: accUser.name,
+      //     receipe,
+      //   },
+      //   from: accUser.email,
+      //   to: realityEmail,
+      //   subject: "About New Recipe",
+      // });
       res.json(receipe);
     } catch (e) {
       res.send(e);
